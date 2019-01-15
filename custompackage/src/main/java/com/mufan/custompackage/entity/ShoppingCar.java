@@ -24,6 +24,6 @@ public class ShoppingCar {
     private Integer id;
     private Integer num;
     private Integer userId;
-    private Integer goodsId;
+    private String goodsId;
     private Boolean checked;
 }

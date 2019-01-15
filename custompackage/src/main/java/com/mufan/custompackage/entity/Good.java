@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Table(name = "good")
 public class Good {
     @Id
+    @Column(name = "id")
     private String id;
     private String media;
     private String name;

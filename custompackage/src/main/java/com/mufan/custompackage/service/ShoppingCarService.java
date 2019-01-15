@@ -2,6 +2,7 @@ package com.mufan.custompackage.service;
 
 import com.mufan.custompackage.dao.ShoppingCarMapper;
 import com.mufan.custompackage.entity.ShoppingCar;
+import com.mufan.custompackage.entity.Trolley;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,9 +66,7 @@ public class ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public List<ShoppingCar> getAll(int userId) {
-        ShoppingCar shoppingCar = new ShoppingCar();
-        shoppingCar.setUserId(userId);
-        return shoppingCarMapper.select(shoppingCar);
+    public List<Trolley> getAll(int userId) {
+        return shoppingCarMapper.getAll(userId);
     }
 }

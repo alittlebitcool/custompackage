@@ -1,6 +1,7 @@
 package com.mufan.custompackage.web;
 
 import com.mufan.custompackage.entity.ShoppingCar;
+import com.mufan.custompackage.entity.Trolley;
 import com.mufan.custompackage.service.ShoppingCarService;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -56,7 +58,7 @@ public class ShoppingCarController {
     }
 
     /**
-     * @Description: 编辑购物车
+     * @Description: 编辑购物车物品数量
      * @Param: shoppingCar
      * @return: null
      * @Author: YuXingZh
@@ -77,9 +79,9 @@ public class ShoppingCarController {
      * @Date: 2019/1/14
      */
     @RequestMapping("shoppingCars")
-    public List<ShoppingCar> getAll(@RequestParam("userId") int userId) {
+    public List<Trolley> getAll(@RequestParam("userId") int userId) {
         logger.info("取出所有购物车里的商品");
-        List<ShoppingCar> list = shoppingCarService.getAll(userId);
+        List<Trolley> list = shoppingCarService.getAll(userId);
         logger.info("取出成功");
         return list;
     }

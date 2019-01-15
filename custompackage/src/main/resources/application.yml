@@ -1,0 +1,20 @@
+mybatis:
+#  mapper-locations: classpath:Mapper/*.xml
+  type-aliases-package: com.mufan.custompackage.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+#»’÷æ¥Ú”°
+logging:
+  level:
+    com.mufan.custompackage.dao: debug
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.79.165.3:3306/custompackage?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+

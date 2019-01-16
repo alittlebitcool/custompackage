@@ -1,7 +1,7 @@
 package com.mufan.custompackage.dao;
 
-import com.mufan.custompackage.entity.Address;
 import com.mufan.custompackage.entity.Order;
+import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -11,4 +11,44 @@ import tk.mybatis.mapper.common.Mapper;
  * % @author YuXingZh
  */
 public interface OrderMapper extends Mapper<Order> {
+
+    /**
+     * @Description: 查询状态为待付款的订单
+     * @Param: userId
+     * @return: count
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT COUNT(*) FROM `order` WHERE STATUS = 1 AND user_id = #{userId}")
+    int pendingPayment(int userId);
+
+    /**
+     * @Description: 查询状态为待发货的订单
+     * @Param: userId
+     * @return: count
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT COUNT(*) FROM `order` WHERE STATUS = 2 AND user_id = #{userId}")
+    int pendingDelivery(int userId);
+
+    /**
+     * @Description: 查询状态为待收货的订单
+     * @Param: userId
+     * @return: count
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT COUNT(*) FROM `order` WHERE STATUS = 3 AND user_id = #{userId}")
+    int pendingGain(int userId);
+
+    /**
+     * @Description: 查询状态为待评价的订单
+     * @Param: userId
+     * @return: count
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT COUNT(*) FROM `order` WHERE STATUS = 4 AND user_id = #{userId}")
+    int pendingEvaluated(int userId);
 }

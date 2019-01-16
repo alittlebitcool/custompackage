@@ -95,4 +95,16 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> getAll(int userId) {
         return addressMapper.getAll(userId);
     }
+
+    /**
+     * @Description: 获取默认地址
+     * @Param: userId
+     * @return address
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Override
+    public Address getDefaultAddress(int userId) {
+        return addressMapper.getDefaultAddress(userId);
+    }
 }

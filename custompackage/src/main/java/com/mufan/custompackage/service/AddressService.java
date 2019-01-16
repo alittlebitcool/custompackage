@@ -19,7 +19,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void updateDefault(String addressId, int userId);
+    void updateDefault(String addressId, int userId);
 
     /**
      * @Description: 插入地址
@@ -28,7 +28,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void insertAddress(Address address);
+    void insertAddress(Address address);
 
     /**
      * @Description: 编辑地址
@@ -37,7 +37,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void editAddress(Address address);
+    void editAddress(Address address);
 
 
     /**
@@ -47,7 +47,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void removeAddress(int addressId);
+    void removeAddress(int addressId);
 
     /**
      * @Description: 查询当前用户的所有地址 默认地址置顶
@@ -56,7 +56,15 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public List<Address> getAll(int userId);
+    List<Address> getAll(int userId);
 
+    /**
+     * @return address
+     * @Description: 获取默认地址
+     * @Param: userId
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    Address getDefaultAddress(int userId);
 
 }

@@ -1,6 +1,7 @@
 package com.mufan.custompackage.service.impl;
 
 import com.mufan.custompackage.dao.PartMapper;
+import com.mufan.custompackage.service.AddressService;
 import com.mufan.custompackage.service.PartService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,18 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PartServiceImplTest {
+public class CustomPackageTest {
 
     @Autowired
     private PartMapper partMapper;
 
     @Autowired
     private PartServiceImpl partServiceImpl;
+
+    @Autowired
+    ShoppingCarServiceImpl shoppingCarServiceImpl;
+
+    @Autowired
+    AddressServiceImpl addressServiceImpl;
 
     @Test
     public void getFirstPart() {
@@ -58,4 +66,21 @@ public class PartServiceImplTest {
     public void getSortNum() {
         System.out.println(partServiceImpl.getSortNum());
     }
+
+    @Test
+    public void insertShoppingCar() {
+        Integer[] a = new Integer[]{101,201,301};
+        List<Integer> list = Arrays.asList(a);
+        System.out.println(list);
+        shoppingCarServiceImpl.insertShoppingCar(list,99,1);
+    }
+
+    @Test
+    public void getDefaultAddress(){
+        System.out.println(addressServiceImpl.getDefaultAddress(1));
+    }
+
+
+
+
 }

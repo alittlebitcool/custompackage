@@ -23,4 +23,14 @@ public interface AddressMapper extends Mapper<Address> {
      */
     @Select("SELECT id,user_id,address_name,status,receiver,telephone FROM address WHERE user_id = #{userId} order by status ")
     List<Address> getAll(int userId);
+
+    /**
+     * @Description: 获取默认地址
+     * @Param: userId
+     * @return address
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT id,user_id,address_name,status,receiver,telephone FROM address WHERE user_id = #{userId} AND status = 1")
+    Address getDefaultAddress(int userId);
 }

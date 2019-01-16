@@ -32,5 +32,5 @@ public interface PartMapper extends Mapper<Part> {
      * @Date: 2019/1/16
      */
     @Select("SELECT count(distinct(sort_id)) FROM part ")
-    public int getSortNum();
+    int getSortNum();
 }

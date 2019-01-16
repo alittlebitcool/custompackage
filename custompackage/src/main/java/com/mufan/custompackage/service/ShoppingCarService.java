@@ -21,7 +21,7 @@ public interface ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void insertShoppingCar(ShoppingCar shoppingCar);
+    public void insertShoppingCar(List<Integer> partsId, int num, int userId);
 
 
     /**
@@ -41,7 +41,7 @@ public interface ShoppingCarService {
      * @Date: 2019/1/14
      */
     @RequestMapping("edit")
-    public void editShoppingCar(int shoppingCarId, int num);
+    public void editShoppingCar(ShoppingCar shoppingCar);
 
     /**
      * @Description: 查询当前用户的所有购物车 默认购物车

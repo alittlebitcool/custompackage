@@ -2,14 +2,13 @@ package com.mufan.custompackage.web;
 
 import com.mufan.custompackage.entity.ShoppingCar;
 import com.mufan.custompackage.entity.Trolley;
+import com.mufan.custompackage.service.ShoppingCarService;
 import com.mufan.custompackage.service.impl.ShoppingCarServiceImpl;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +25,7 @@ public class ShoppingCarController {
     private static Logger logger = Logger.getLogger(ShoppingCarController.class);
 
     @Autowired
-    private ShoppingCarServiceImpl shoppingCarService;
+    private ShoppingCarService shoppingCarService;
 
     /**
      * @Description: 插入购物车
@@ -36,10 +35,11 @@ public class ShoppingCarController {
      * @Date: 2019/1/14
      */
     @RequestMapping("insert")
-    public void insertShoppingCar(@RequestBody ShoppingCar shoppingCar) {
-        logger.info("插入" + shoppingCar);
-        shoppingCarService.insertShoppingCar(shoppingCar);
-        logger.info("插入" + shoppingCar + "成功");
+    public void insertShoppingCar(@RequestBody List<Integer> partsId,
+                                  @RequestParam("num") int num, @RequestParam("userId") int userId) {
+        logger.info("插入中");
+        shoppingCarService.insertShoppingCar(partsId, num, userId);
+        logger.info("插入成功");
     }
 
     /**
@@ -64,10 +64,10 @@ public class ShoppingCarController {
      * @Date: 2019/1/14
      */
     @RequestMapping("edit")
-    public void editShoppingCar(@RequestParam("shoppingCarId")int shoppingCarId,@RequestParam("num") int num) {
-        logger.info("编辑id为 " + shoppingCarId + "的商品");
-        shoppingCarService.editShoppingCar(shoppingCarId, num);
-        logger.info("编辑 " + shoppingCarId + "成功");
+    public void editShoppingCar(@RequestBody ShoppingCar shoppingCar) {
+        logger.info("编辑 " + shoppingCar + "的商品");
+        shoppingCarService.editShoppingCar(shoppingCar);
+        logger.info("编辑 " + shoppingCar + "成功");
     }
 
     /**

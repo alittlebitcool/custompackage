@@ -25,4 +25,14 @@ public interface ShoppingCarMapper extends Mapper<ShoppingCar> {
      */
     @Select("SELECT shoppingCar.*,good.name,good.media,good.price from shoppingCar left join good on shoppingCar.goods_id = good.id where user_id = #{userId}")
     List<Trolley> getAll(int userId);
+
+    /**
+     * @Description: 得到当前部件组成的good
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Select("SELECT id FROM good where part_id= #{userId}")
+    int getGoodId(String partsId);
 }

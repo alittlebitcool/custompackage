@@ -4,9 +4,11 @@ import com.mufan.custompackage.dao.ShoppingCarMapper;
 import com.mufan.custompackage.entity.ShoppingCar;
 import com.mufan.custompackage.entity.Trolley;
 import com.mufan.custompackage.service.ShoppingCarService;
+import com.mufan.custompackage.util.EntityConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -31,7 +33,14 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
      * @Date: 2019/1/14
      */
     @Override
-    public void insertShoppingCar(ShoppingCar shoppingCar) {
+    public void insertShoppingCar(List<Integer> partsId, int num, int userId) {
+        ShoppingCar shoppingCar = new ShoppingCar();
+        int goodId =
+                shoppingCarMapper.getGoodId(EntityConversion.getGoodId(partsId));
+        shoppingCar.setGoodsId(goodId);
+        shoppingCar.setUserId(userId);
+        shoppingCar.setNum(num);
+        shoppingCar.setChecked(false);
         shoppingCarMapper.insertSelective(shoppingCar);
     }
 
@@ -55,10 +64,7 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
      * @Date: 2019/1/14
      */
     @Override
-    public void editShoppingCar(int shoppingCarId, int num) {
-        ShoppingCar shoppingCar =
-                shoppingCarMapper.selectByPrimaryKey(shoppingCarId);
-        shoppingCar.setNum(num);
+    public void editShoppingCar(ShoppingCar shoppingCar) {
         shoppingCarMapper.updateByPrimaryKeySelective(shoppingCar);
     }
 

@@ -1,24 +1,16 @@
 package com.mufan.custompackage.service;
 
-import com.mufan.custompackage.dao.AddressMapper;
 import com.mufan.custompackage.entity.Address;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * @ Author     ：zyx.
- * @ Date       ：Created in 16:45 2019/1/14
- * @ Description：地址类service
+ * @ Date       ：Created in 14:07 2019/1/16
+ * @ Description：地址的业务层
  * % @author YuXingZh
  */
-@Service
-public class AddressService {
-
-    @Autowired
-    private AddressMapper addressMapper;
+public interface AddressService {
 
     /**
      * @Description: 更新默认地址
@@ -27,21 +19,7 @@ public class AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void updateDefault(String addressId, int userId) {
-        Address ad = new Address();
-        ad.setStatus(true);
-        ad.setUserId(userId);
-
-        // 默认地址的替换
-        Address defaulted = addressMapper.selectOne(ad);
-        Address address = addressMapper.selectByPrimaryKey(addressId);
-        defaulted.setStatus(false);
-        address.setStatus(true);
-
-        // 更新到数据库
-        addressMapper.updateByPrimaryKey(defaulted);
-        addressMapper.updateByPrimaryKey(address);
-    }
+    public void updateDefault(String addressId, int userId);
 
     /**
      * @Description: 插入地址
@@ -50,9 +28,7 @@ public class AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void insertAddress(Address address) {
-        addressMapper.insert(address);
-    }
+    public void insertAddress(Address address);
 
     /**
      * @Description: 编辑地址
@@ -61,13 +37,8 @@ public class AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void editAddress(Address address) {
-        Address original = addressMapper.selectByPrimaryKey(address.getId());
-        // 判断是否需要修改
-        if(!original.equals(address)) {
-            addressMapper.updateByPrimaryKeySelective(address);
-        }
-    }
+    public void editAddress(Address address);
+
 
     /**
      * @Description: 移除地址
@@ -76,9 +47,7 @@ public class AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public void removeAddress(int addressId) {
-        addressMapper.deleteByPrimaryKey(addressId);
-    }
+    public void removeAddress(int addressId);
 
     /**
      * @Description: 查询当前用户的所有地址 默认地址置顶
@@ -87,7 +56,7 @@ public class AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    public List<Address> getAll(int userId) {
-        return addressMapper.getAll(userId);
-    }
+    public List<Address> getAll(int userId);
+
+
 }

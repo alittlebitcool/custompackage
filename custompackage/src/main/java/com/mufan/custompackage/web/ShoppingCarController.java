@@ -2,7 +2,7 @@ package com.mufan.custompackage.web;
 
 import com.mufan.custompackage.entity.ShoppingCar;
 import com.mufan.custompackage.entity.Trolley;
-import com.mufan.custompackage.service.ShoppingCarService;
+import com.mufan.custompackage.service.impl.ShoppingCarServiceImpl;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -27,7 +26,7 @@ public class ShoppingCarController {
     private static Logger logger = Logger.getLogger(ShoppingCarController.class);
 
     @Autowired
-    private ShoppingCarService shoppingCarService;
+    private ShoppingCarServiceImpl shoppingCarService;
 
     /**
      * @Description: 插入购物车

@@ -1,7 +1,7 @@
 package com.mufan.custompackage.web;
 
 import com.mufan.custompackage.entity.Address;
-import com.mufan.custompackage.service.AddressService;
+import com.mufan.custompackage.service.impl.AddressServiceImpl;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +25,7 @@ public class AddressController {
     private static Logger logger = Logger.getLogger(AddressController.class);
 
     @Autowired
-    private AddressService addressService;
+    private AddressServiceImpl addressService;
 
     /**
      * @Description: 更改默认地址

@@ -1,18 +1,10 @@
 package com.mufan.custompackage.service;
 
-import com.mufan.custompackage.dao.OrderMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 /**
  * @ Author     ：zyx.
- * @ Date       ：Created in 16:45 2019/1/14
- * @ Description：订单类service
+ * @ Date       ：Created in 14:08 2019/1/16
+ * @ Description：订单的业务层
  * % @author YuXingZh
  */
-@Service
-public class OrderService {
-
-    @Autowired
-    private OrderMapper orderMapper;
+public interface OrderService {
 }

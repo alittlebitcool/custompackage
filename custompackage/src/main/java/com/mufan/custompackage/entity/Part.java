@@ -22,7 +22,7 @@ public class Part {
     private Integer id;
     private String partName;
     private Integer sortId;
-    private Integer imageUrl;
+    private String imageUrl;
     private Double partPrice;
     private Boolean checked;
 }

@@ -25,7 +25,5 @@ public class Good {
     private String media;
     private String name;
     private String partId;
-    private Integer sort;
     private Double price;
-    private Integer first;
 }

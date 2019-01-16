@@ -23,4 +23,14 @@ public interface PartMapper extends Mapper<Part> {
      */
     @Select("SELECT id FROM part GROUP BY sort_id limit 3")
     List<Integer> getFirstPart();
+
+    /**
+     * @Description: 得到部件的分类
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT count(distinct(sort_id)) FROM part ")
+    public int getSortNum();
 }

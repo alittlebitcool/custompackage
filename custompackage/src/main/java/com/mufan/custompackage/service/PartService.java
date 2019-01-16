@@ -3,6 +3,7 @@ package com.mufan.custompackage.service;
 import com.mufan.custompackage.entity.Good;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ Author     ：zyx.
@@ -29,6 +30,15 @@ public interface PartService {
      * @Date: 2019/1/16
      */
     public Good defaultGood();
+
+    /**
+     * @Description: 选择部件
+     * @Param: a
+     * @return: a
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    public Map<String, Object> partSelect();
 
 
 }

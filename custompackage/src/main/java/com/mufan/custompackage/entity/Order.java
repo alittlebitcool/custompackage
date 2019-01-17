@@ -22,10 +22,11 @@ public class Order {
     @Id
     private Integer id;
     private Integer userId;
-    private Date date;
-    private String goodsJson;
-    private String status;
+    private Integer status;
     private String logisticCode;
     private String expressCompany;
+    private Integer addressId;
     private String message;
+    private Double sumPrice;
+    private String evaluated;
 }

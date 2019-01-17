@@ -33,6 +33,6 @@ public interface ShoppingCarMapper extends Mapper<ShoppingCar> {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    @Select("SELECT id FROM good where part_id= #{userId}")
+    @Select("SELECT id FROM good where part_id= #{partsId}")
     int getGoodId(String partsId);
 }

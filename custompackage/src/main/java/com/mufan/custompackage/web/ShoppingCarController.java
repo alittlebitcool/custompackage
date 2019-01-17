@@ -37,9 +37,9 @@ public class ShoppingCarController {
     @RequestMapping("insert")
     public void insertShoppingCar(@RequestBody List<Integer> partsId,
                                   @RequestParam("num") int num, @RequestParam("userId") int userId) {
-        logger.info("插入中");
+        logger.info("加入购物车中");
         shoppingCarService.insertShoppingCar(partsId, num, userId);
-        logger.info("插入成功");
+        logger.info("加入购物车成功");
     }
 
     /**
@@ -51,9 +51,9 @@ public class ShoppingCarController {
      */
     @RequestMapping("remove")
     public void removeShoppingCar(@RequestParam("shoppingCarId") int shoppingCarId) {
-        logger.info("移除id为 " + shoppingCarId + "的商品");
+        logger.info("从购物车移除id为 " + shoppingCarId + "的商品");
         shoppingCarService.removeShoppingCar(shoppingCarId);
-        logger.info("移除" + shoppingCarId + "成功");
+        logger.info("从购物车移除" + shoppingCarId + "成功");
     }
 
     /**
@@ -65,9 +65,9 @@ public class ShoppingCarController {
      */
     @RequestMapping("edit")
     public void editShoppingCar(@RequestBody ShoppingCar shoppingCar) {
-        logger.info("编辑 " + shoppingCar + "的商品");
+        logger.info("购物车中编辑 " + shoppingCar + "的商品");
         shoppingCarService.editShoppingCar(shoppingCar);
-        logger.info("编辑 " + shoppingCar + "成功");
+        logger.info("购物车中编辑 " + shoppingCar + "成功");
     }
 
     /**

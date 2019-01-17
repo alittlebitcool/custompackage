@@ -1,11 +1,17 @@
 package com.mufan.custompackage.service.impl;
 
 import com.mufan.custompackage.dao.OrderMapper;
+import com.mufan.custompackage.entity.Order;
+import com.mufan.custompackage.entity.OrderDetail;
+import com.mufan.custompackage.entity.ShoppingCar;
 import com.mufan.custompackage.service.OrderService;
+import com.mufan.custompackage.util.EntityConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,5 +41,19 @@ public class OrderServiceImpl implements OrderService {
         map.put("待收货",orderMapper.pendingGain(userId));
         map.put("待评价",orderMapper.pendingEvaluated(userId));
         return map;
+    }
+
+    /**
+     * @Description: 立即购买加入订单
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/17
+     */
+    @Transactional
+    @Override
+    public void insertShoppingCar(List<Integer> partsId, int num, int userId) {
+        Order order = new Order();
+        OrderDetail orderDetail = new OrderDetail();
     }
 }

@@ -1,8 +1,6 @@
 package com.mufan.custompackage.service;
 
-import com.mufan.custompackage.dao.OrderMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,5 +18,14 @@ public interface OrderService {
      * @Author: YuXingZh
      * @Date: 2019/1/16
      */
-    public Map<String,Integer> getAllStatus(int userId);
+    Map<String, Integer> getAllStatus(int userId);
+
+    /**
+     * @Description: 立即购买加入订单
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/17
+     */
+    void insertShoppingCar(List<Integer> partsId, int num, int userId);
 }

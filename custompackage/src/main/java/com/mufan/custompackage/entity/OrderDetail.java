@@ -17,18 +17,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_detail")
 public class OrderDetail {
-    @Id
     private Integer id;
-    private Integer orderId;
-    private Integer goodId;
+    private String media;
+    private String name;
+    private Integer status;
+    private Double sumPrice;
     private Integer num;
-    private Date createTime;
-    private Date paymentTime;
-    private Date consignTime;
-    private Date endTime;
-    private Date closeTime;
-    private Date commentTime;
 
 }

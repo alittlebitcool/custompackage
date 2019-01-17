@@ -33,4 +33,14 @@ public interface PartMapper extends Mapper<Part> {
      */
     @Select("SELECT count(distinct(sort_id)) FROM part ")
     int getSortNum();
+
+    /**
+     * @Description: 得到部件的名称
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT part_name FROM part where id = #{partId}")
+    String getPartName(int partId);
 }

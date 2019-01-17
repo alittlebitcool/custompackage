@@ -97,4 +97,19 @@ public class AddressController {
         logger.info("查询成功");
         return list;
     }
+
+//    /**
+//     * @Description: 选择地址
+//     * @Param:
+//     * @return:
+//     * @Author: YuXingZh
+//     * @Date: 2019/1/17
+//     */
+//    @RequestMapping("select")
+//    public Address getAddress(@RequestParam("addressId") int addressId) {
+//        logger.info("查询用户id为 " + addressId + "的地址");
+//        Address address = addressService.getAddress(addressId);
+//        logger.info("查询成功");
+//        return address;
+//    }
 }

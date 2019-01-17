@@ -67,4 +67,5 @@ public interface AddressService {
      */
     Address getDefaultAddress(int userId);
 
+//    Address getAddress(int addressId);
 }

@@ -51,4 +51,24 @@ public interface OrderMapper extends Mapper<Order> {
      */
     @Select("SELECT COUNT(*) FROM `order` WHERE STATUS = 4 AND user_id = #{userId}")
     int pendingEvaluated(int userId);
+
+    /**
+     * @Description: 得到当前部件组成的good
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Select("SELECT id FROM good where part_id= #{partsId}")
+    int getGoodId(String partsId);
+
+//    /**
+//     * @Description: 得到当前部件组成的good
+//     * @Param: userId
+//     * @return: null
+//     * @Author: YuXingZh
+//     * @Date: 2019/1/14
+//     */
+//    @Select("SELECT id FROM good where part_id= #{partsId}")
+//    int insertOrder(String partsId);
 }

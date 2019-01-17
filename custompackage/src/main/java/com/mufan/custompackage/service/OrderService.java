@@ -27,5 +27,5 @@ public interface OrderService {
      * @Author: YuXingZh
      * @Date: 2019/1/17
      */
-    void insertShoppingCar(List<Integer> partsId, int num, int userId);
+    Map<String, Object> purchaseImmediate (List<Integer> partsId, int num, int userId);
 }

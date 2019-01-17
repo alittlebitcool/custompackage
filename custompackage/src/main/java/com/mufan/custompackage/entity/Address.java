@@ -27,5 +27,6 @@ public class Address {
     private Boolean status;
     private String receiver;
     private String telephone;
+    private Double freight;
 
 }

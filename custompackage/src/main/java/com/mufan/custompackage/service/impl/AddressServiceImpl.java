@@ -107,4 +107,16 @@ public class AddressServiceImpl implements AddressService {
     public Address getDefaultAddress(int userId) {
         return addressMapper.getDefaultAddress(userId);
     }
+
+//    /**
+//     * @Description: 选择地址
+//     * @Param: userId
+//     * @return address
+//     * @Author: YuXingZh
+//     * @Date: 2019/1/16
+//     */
+//    @Override
+//    public Address getAddress(int addressId) {
+//        return addressMapper.selectByPrimaryKey(addressId);
+//    }
 }

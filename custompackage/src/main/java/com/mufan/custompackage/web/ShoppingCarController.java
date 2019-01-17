@@ -35,7 +35,7 @@ public class ShoppingCarController {
      * @Date: 2019/1/14
      */
     @RequestMapping("insert")
-    public void insertShoppingCar(@RequestBody List<Integer> partsId,
+    public void insertShoppingCar(@RequestParam("partsId") List<Integer> partsId,
                                   @RequestParam("num") int num, @RequestParam("userId") int userId) {
         logger.info("加入购物车中");
         shoppingCarService.insertShoppingCar(partsId, num, userId);

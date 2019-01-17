@@ -31,6 +31,6 @@ public interface AddressMapper extends Mapper<Address> {
      * @Author: YuXingZh
      * @Date: 2019/1/16
      */
-    @Select("SELECT id,user_id,address_name,status,receiver,telephone FROM address WHERE user_id = #{userId} AND status = 1")
+    @Select("SELECT id,user_id,address_name,status,receiver,telephone,freight FROM address WHERE user_id = #{userId} AND status = 1")
     Address getDefaultAddress(int userId);
 }

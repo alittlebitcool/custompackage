@@ -101,4 +101,18 @@ public class ShoppingCarController {
         logger.info("切换购物车选中状态成功");
     }
 
+    /**
+     * @Description: 增加或减少商品数量
+     * @Param: shoppingCarId
+     * @return: num
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @RequestMapping("inandout")
+    public void inAndOut(@RequestParam("shoppingCarId") int shoppingCarId,
+                                  @RequestParam("num") int num) {
+        logger.info("增加或减少商品数量");
+        shoppingCarService.inAndOut(shoppingCarId, num);
+        logger.info("增加或减少商品数量成功");
+    }
 }

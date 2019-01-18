@@ -80,7 +80,7 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
 
     /**
      * @Description: 切换购物车选中状态
-     * @Param: shoppingCarId, checked
+     * @param: shoppingCarId, checked
      * @return: null
      * @Author: YuXingZh
      * @Date: 2019/1/14
@@ -89,6 +89,21 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     public void switchShoppingCar(int shoppingCarId, Boolean checked) {
         ShoppingCar shoppingCar = new ShoppingCar();
         shoppingCar.setChecked(checked);
+        shoppingCar.setId(shoppingCarId);
+        shoppingCarMapper.updateByPrimaryKeySelective(shoppingCar);
+    }
+
+    /**
+     * @Description: 增加或减少商品数量
+     * @param shoppingCarId
+     * @param num
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @Override
+    public void inAndOut(int shoppingCarId, int num) {
+        ShoppingCar shoppingCar = new ShoppingCar();
+        shoppingCar.setNum(num);
         shoppingCar.setId(shoppingCarId);
         shoppingCarMapper.updateByPrimaryKeySelective(shoppingCar);
     }

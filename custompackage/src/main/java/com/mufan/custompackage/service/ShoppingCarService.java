@@ -60,4 +60,13 @@ public interface ShoppingCarService {
      * @Date: 2019/1/14
      */
     void switchShoppingCar(int shoppingCarId, Boolean checked);
+
+    /**
+     * @Description: 增加或减少商品数量
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    void inAndOut(int shoppingCarId, int num);
 }

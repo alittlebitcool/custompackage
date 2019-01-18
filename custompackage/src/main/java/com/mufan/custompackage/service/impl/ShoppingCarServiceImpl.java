@@ -7,8 +7,6 @@ import com.mufan.custompackage.service.ShoppingCarService;
 import com.mufan.custompackage.util.EntityConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -78,5 +76,20 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
     @Override
     public List<Trolley> getAll(int userId) {
         return shoppingCarMapper.getAll(userId);
+    }
+
+    /**
+     * @Description: 切换购物车选中状态
+     * @Param: shoppingCarId, checked
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Override
+    public void switchShoppingCar(int shoppingCarId, Boolean checked) {
+        ShoppingCar shoppingCar = new ShoppingCar();
+        shoppingCar.setChecked(checked);
+        shoppingCar.setId(shoppingCarId);
+        shoppingCarMapper.updateByPrimaryKeySelective(shoppingCar);
     }
 }

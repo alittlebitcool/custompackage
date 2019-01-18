@@ -3,12 +3,13 @@ package com.mufan.custompackage.web;
 import com.mufan.custompackage.entity.ShoppingCar;
 import com.mufan.custompackage.entity.Trolley;
 import com.mufan.custompackage.service.ShoppingCarService;
-import com.mufan.custompackage.service.impl.ShoppingCarServiceImpl;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -84,4 +85,20 @@ public class ShoppingCarController {
         logger.info("取出成功");
         return list;
     }
+
+    /**
+     * @Description: 选中购物车
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @RequestMapping("switch")
+    public void switchShoppingCar(@RequestParam("shoppingCarId") int shoppingCarId,
+                                  @RequestParam("checked") Boolean checked) {
+        logger.info("切换购物车选中状态");
+        shoppingCarService.switchShoppingCar(shoppingCarId, checked);
+        logger.info("切换购物车选中状态成功");
+    }
+
 }

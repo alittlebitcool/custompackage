@@ -52,4 +52,12 @@ public interface ShoppingCarService {
      */
     public List<Trolley> getAll(int userId);
 
+    /**
+     * @Description: 切换购物车选中状态
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    void switchShoppingCar(int shoppingCarId, Boolean checked);
 }

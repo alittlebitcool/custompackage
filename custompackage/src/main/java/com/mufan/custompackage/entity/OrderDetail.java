@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @ Author     ：zyx.
  * @ Date       ：Created in 20:05 2019/1/16
- * @ Description：订单细节
+ * @ Description：订单细节 并不是对应order_detail 表
  * % @author YuXingZh
  */
 @Data

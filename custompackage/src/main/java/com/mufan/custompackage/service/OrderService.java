@@ -1,5 +1,7 @@
 package com.mufan.custompackage.service;
 
+import com.mufan.custompackage.entity.OrderDetail;
+
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +24,46 @@ public interface OrderService {
 
     /**
      * @Description: 立即购买加入订单
-     * @Param:
+     * @Param: partsId，userId
      * @return:
      * @Author: YuXingZh
      * @Date: 2019/1/17
      */
     Map<String, Object> purchaseImmediate (List<Integer> partsId, int num, int userId);
+
+    /**
+     * @Description: 取消订单
+     * @Param: orderId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/17
+     */
+    void cancelOrder(int orderId);
+
+    /**
+     * @Description: 交易完成
+     * @Param: orderId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/17
+     */
+    void harvestConfirm(int orderId);
+
+    /**
+     * @Description: 评价订单
+     * @Param: orderId
+     * @return: text
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    void orderEvaluate(int orderId, String text);
+
+    /**
+     * @Description: 获取全部的订单信息
+     * @Param: userId
+     * @return: text
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    List<OrderDetail> getAll(int userId);
 }

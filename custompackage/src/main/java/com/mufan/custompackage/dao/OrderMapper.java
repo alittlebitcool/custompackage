@@ -1,8 +1,11 @@
 package com.mufan.custompackage.dao;
 
 import com.mufan.custompackage.entity.Order;
+import com.mufan.custompackage.entity.OrderDetail;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
+
+import java.util.List;
 
 /**
  * @ Author     ：zyx.
@@ -71,4 +74,57 @@ public interface OrderMapper extends Mapper<Order> {
 //     */
 //    @Select("SELECT id FROM good where part_id= #{partsId}")
 //    int insertOrder(String partsId);
+
+    /**
+     * @Description: 设置订单状态
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Select("UPDATE `order` SET STATUS = ${status} WHERE id = #{orderId};")
+    void setStatus(int orderId,int status);
+
+    /**
+     * @Description: 取消订单 设置关闭时间
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Select("update order_detail set close_time = NOW() where order_id = #{orderId} ")
+    void setCloseTime(int orderId);
+
+    /**
+     * @Description: 完成订单 设置结束时间
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Select("update order_detail set end_time = NOW() where order_id = " +
+            "#{orderId} ")
+    void setEndTime(int orderId);
+
+    /**
+     * @Description: 完成订单 设置结束时间
+     * @Param: userId
+     * @return: null
+     * @Author: YuXingZh
+     * @Date: 2019/1/14
+     */
+    @Select("UPDATE `order` SET evaluated = #{text} WHERE id = #{orderId}")
+    void orderEvaluate(int orderId, String text);
+
+    /**
+     * @Description: 获取全部的订单信息
+     * @Param: userId
+     * @return: text
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @Select("SELECT a.id, b.media, b.NAME, a.STATUS, a.sum_price, c.num FROM " +
+            "`order` a, good b, order_detail c WHERE c.order_id = a.id AND c" +
+            ".good_id = b.id AND a.user_id = #{userId};")
+    List<OrderDetail> getAll(int userId);
 }

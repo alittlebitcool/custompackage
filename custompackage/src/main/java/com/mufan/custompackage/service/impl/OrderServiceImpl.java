@@ -6,11 +6,11 @@ import com.mufan.custompackage.dao.OrderMapper;
 import com.mufan.custompackage.dao.PartMapper;
 import com.mufan.custompackage.entity.Address;
 import com.mufan.custompackage.entity.Good;
+import com.mufan.custompackage.entity.OrderDetail;
 import com.mufan.custompackage.service.OrderService;
 import com.mufan.custompackage.util.EntityConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * @Description: 立即购买加入订单
-     * @Param:
+     * @Param: partsId,num,userId
      * @return:
      * @Author: YuXingZh
      * @Date: 2019/1/17
@@ -93,6 +93,62 @@ public class OrderServiceImpl implements OrderService {
         map.put("realPay",realPay);
 
         return map;
+    }
+
+    /**
+     * @Description: 取消订单
+     * @Param: orderId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @Override
+    public void cancelOrder(int orderId) {
+        // 设置状态为6已关闭
+        orderMapper.setStatus(orderId,6);
+
+        // 设置交易关闭时间
+        orderMapper.setCloseTime(orderId);
+    }
+
+    /**
+     * @Description: 确认收获 交易完成
+     * @Param: orderId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @Override
+    public void harvestConfirm(int orderId) {
+        // 设置状态为4待评价
+        orderMapper.setStatus(orderId,4);
+
+        // 设置交易完成时间
+        orderMapper.setEndTime(orderId);
+    }
+
+    /**
+     * @Description: 评价订单
+     * @Param: orderId
+     * @return: text
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @Override
+    public void orderEvaluate(int orderId, String text) {
+        orderMapper.orderEvaluate(orderId,text);
+    }
+
+    /**
+     * @Description: 获取全部的订单信息
+     * @Param: userId
+     * @return: text
+     * @Author: YuXingZh
+     * @Date: 2019/1/18
+     */
+    @Override
+    public List<OrderDetail> getAll(int userId) {
+        return orderMapper.getAll(userId);
     }
 
 }

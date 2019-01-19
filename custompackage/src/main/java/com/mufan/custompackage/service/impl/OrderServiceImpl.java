@@ -47,10 +47,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Map<String, Integer> getAllStatus(int userId) {
         Map<String, Integer> map = new HashMap<>();
-        map.put("待付款", orderMapper.pendingPayment(userId));
-        map.put("待发货", orderMapper.pendingDelivery(userId));
-        map.put("待收货", orderMapper.pendingGain(userId));
-        map.put("待评价", orderMapper.pendingEvaluated(userId));
+        map.put("pendingPayment", orderMapper.pendingPayment(userId));
+        map.put("pendingDelivery", orderMapper.pendingDelivery(userId));
+        map.put("pendingGain", orderMapper.pendingGain(userId));
+        map.put("pendingEvaluated", orderMapper.pendingEvaluated(userId));
         return map;
     }
 
@@ -136,6 +136,10 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void orderEvaluate(int orderId, String text) {
+        // 设置状态为6已关闭
+        orderMapper.setStatus(orderId,5);
+
+        // 添加评论
         orderMapper.orderEvaluate(orderId,text);
     }
 

@@ -1,6 +1,7 @@
 package com.mufan.custompackage.service;
 
 import com.mufan.custompackage.entity.OrderDetail;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ public interface OrderService {
      * @Author: YuXingZh
      * @Date: 2019/1/17
      */
+    @Transactional
     Map<String, Object> purchaseImmediate (List<Integer> partsId, int num, int userId);
 
     /**
@@ -38,6 +40,7 @@ public interface OrderService {
      * @Author: YuXingZh
      * @Date: 2019/1/17
      */
+    @Transactional
     void cancelOrder(int orderId);
 
     /**
@@ -47,6 +50,7 @@ public interface OrderService {
      * @Author: YuXingZh
      * @Date: 2019/1/17
      */
+    @Transactional
     void harvestConfirm(int orderId);
 
     /**
@@ -56,6 +60,7 @@ public interface OrderService {
      * @Author: YuXingZh
      * @Date: 2019/1/18
      */
+    @Transactional
     void orderEvaluate(int orderId, String text);
 
     /**
@@ -66,4 +71,14 @@ public interface OrderService {
      * @Date: 2019/1/18
      */
     List<OrderDetail> getAll(int userId);
+
+    /**
+     * @Description: 立即购买
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/19
+     */
+    @Transactional
+    void commit(Map<String, Object> map);
 }

@@ -2,6 +2,7 @@ package com.mufan.custompackage.service;
 
 import com.mufan.custompackage.entity.ShoppingCar;
 import com.mufan.custompackage.entity.Trolley;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public interface ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     public void insertShoppingCar(List<Integer> partsId, int num, int userId);
 
 
@@ -31,6 +33,7 @@ public interface ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     public void removeShoppingCar(int shoppingCarId);
 
     /**
@@ -40,7 +43,7 @@ public interface ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
-    @RequestMapping("edit")
+    @Transactional
     public void editShoppingCar(ShoppingCar shoppingCar);
 
     /**
@@ -59,6 +62,7 @@ public interface ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     void switchShoppingCar(int shoppingCarId, Boolean checked);
 
     /**
@@ -68,5 +72,6 @@ public interface ShoppingCarService {
      * @Author: YuXingZh
      * @Date: 2019/1/18
      */
+    @Transactional
     void inAndOut(int shoppingCarId, int num);
 }

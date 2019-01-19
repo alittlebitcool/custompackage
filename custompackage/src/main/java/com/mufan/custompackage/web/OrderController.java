@@ -4,6 +4,7 @@ import com.mufan.custompackage.entity.OrderDetail;
 import com.mufan.custompackage.service.OrderService;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -123,5 +124,19 @@ public class OrderController {
         List<OrderDetail> list = orderService.getAll(userId);
         logger.info("取消订单成功");
         return list;
+    }
+
+    /**
+     * @Description: 立即购买
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/19
+     */
+    @RequestMapping("commit")
+    public void commit(@RequestBody Map<String,Object> map) {
+        logger.info("立即购买");
+        orderService.commit(map);
+        logger.info("购买成功");
     }
 }

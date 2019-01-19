@@ -1,6 +1,7 @@
 package com.mufan.custompackage.service;
 
 import com.mufan.custompackage.entity.Address;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     void updateDefault(String addressId, int userId);
 
     /**
@@ -28,6 +30,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     void insertAddress(Address address);
 
     /**
@@ -37,6 +40,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     void editAddress(Address address);
 
 
@@ -47,6 +51,7 @@ public interface AddressService {
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
+    @Transactional
     void removeAddress(int addressId);
 
     /**

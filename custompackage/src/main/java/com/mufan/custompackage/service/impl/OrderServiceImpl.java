@@ -1,9 +1,6 @@
 package com.mufan.custompackage.service.impl;
 
-import com.mufan.custompackage.dao.AddressMapper;
-import com.mufan.custompackage.dao.GoodMapper;
-import com.mufan.custompackage.dao.OrderMapper;
-import com.mufan.custompackage.dao.PartMapper;
+import com.mufan.custompackage.dao.*;
 import com.mufan.custompackage.entity.Address;
 import com.mufan.custompackage.entity.Good;
 import com.mufan.custompackage.entity.Order;
@@ -37,6 +34,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private AddressMapper addressMapper;
+
+    @Autowired
+    private ShoppingCarMapper shoppingCarMapper;
 
     /**
      * @Description: 获取所有订单状态信息
@@ -168,14 +168,18 @@ public class OrderServiceImpl implements OrderService {
         int userId = (int) map.get("userId");
         int addressId = (int) map.get("addressId");
         String message = (String) map.get("message");
-        Double sumPrice = (Double) map.get("sumPrice");
+
+        // JS Double 传值当出现整数将会传为int 导致错误
+        String json = (String) map.get("sumPrice");
+        Double sumPrice = Double.parseDouble(json);
+
         Order order = new Order();
         order.setUserId(userId);
         order.setAddressId(addressId);
         order.setStatus(1);
         order.setMessage(message);
         order.setSumPrice(sumPrice);
-        orderMapper.insertOrder(userId,addressId,message,sumPrice);
+        orderMapper.insertOrder(userId, addressId, message, sumPrice);
 
         // 获取最后插入的订单id
         int lastInsertId = orderMapper.getLastInsertId();
@@ -188,6 +192,14 @@ public class OrderServiceImpl implements OrderService {
             orderMapper.insertOrderDetail(lastInsertId, goodId, num);
         }
 
+
+        List<Integer> shoppingCarIdList = (List<Integer>) map.get("shoppingCars");
+        // 从购物车中过来的id 将会被删除
+        if (shoppingCarIdList != null) {
+            for (Integer shoppingCarId : shoppingCarIdList) {
+                shoppingCarMapper.deleteByPrimaryKey(shoppingCarId);
+            }
+        }
     }
 
 }

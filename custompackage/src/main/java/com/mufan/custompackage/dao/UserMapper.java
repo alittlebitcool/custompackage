@@ -2,6 +2,7 @@ package com.mufan.custompackage.dao;
 
 import com.mufan.custompackage.entity.Address;
 import com.mufan.custompackage.entity.User;
+import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -11,4 +12,13 @@ import tk.mybatis.mapper.common.Mapper;
  * % @author YuXingZh
  */
 public interface UserMapper extends Mapper<User> {
+    /**
+     * @Description: 验证openId是否存储过
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    @Select("SELECT COUNT(*) FROM user where open_id = #{openId}")
+    int existsOpenId(String openId);
 }

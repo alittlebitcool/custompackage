@@ -1,6 +1,7 @@
 package com.mufan.custompackage.web;
 
 import com.mufan.custompackage.entity.Address;
+import com.mufan.custompackage.service.AddressService;
 import com.mufan.custompackage.service.impl.AddressServiceImpl;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class AddressController {
     private static Logger logger = Logger.getLogger(AddressController.class);
 
     @Autowired
-    private AddressServiceImpl addressService;
+    private AddressService addressService;
 
     /**
      * @Description: 更改默认地址
@@ -35,7 +36,7 @@ public class AddressController {
      * @Date: 2019/1/14
      */
     @RequestMapping("update")
-    public void updateDefault(@RequestParam("addressId") String addressId, @RequestParam("userId") int userId) {
+    public void updateDefault(@RequestParam("addressId") int addressId,@RequestParam("userId") int userId) {
         logger.info("更改 " + addressId + " 为默认地址");
         addressService.updateDefault(addressId, userId);
         logger.info("更改成功");
@@ -98,6 +99,21 @@ public class AddressController {
         return list;
     }
 
+    /**
+     * @Description: 获取默认地址
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/17
+     */
+    @RequestMapping("default")
+    public Address defaultAddress(@RequestParam("userId") int userId) {
+        logger.info("查询用户id为 " + userId + "的地址");
+        Address address = addressService.getDefaultAddress(userId);
+        logger.info("查询成功");
+        return address;
+    }
+
 //    /**
 //     * @Description: 选择地址
 //     * @Param:
@@ -111,5 +127,7 @@ public class AddressController {
 //        Address address = addressService.getAddress(addressId);
 //        logger.info("查询成功");
 //        return address;
+
 //    }
+
 }

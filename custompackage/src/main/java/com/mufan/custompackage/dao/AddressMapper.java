@@ -26,12 +26,52 @@ public interface AddressMapper extends Mapper<Address> {
     List<Address> getAll(int userId);
 
     /**
+     * @return address
      * @Description: 获取默认地址
      * @Param: userId
-     * @return address
      * @Author: YuXingZh
      * @Date: 2019/1/16
      */
     @Select("SELECT id,user_id,address_name,status,receiver,telephone,freight FROM address WHERE user_id = #{userId} AND status = 1")
     Address getDefaultAddress(int userId);
+
+    /**
+     * @return address
+     * @Description: 获取默认地址
+     * @Param: userId
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("update address set status = 1 where id = #{addressId}")
+    void updateAddress(int addressId);
+
+    /**
+     * @return address
+     * @Description: 获取默认地址
+     * @Param: userId
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT id FROM address WHERE user_id = #{userId} LIMIT 1")
+    int originalAddress(int userId);
+
+    /**
+     * @return address
+     * @Description: 判断是否有默认地址
+     * @Param: userId
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT COUNT(*) FROM address WHERE user_id = #{userId} and status = 1")
+    int hasDefault(int userId);
+
+    /**
+     * @return address
+     * @Description: 判断是否有默认地址
+     * @Param: userId
+     * @Author: YuXingZh
+     * @Date: 2019/1/16
+     */
+    @Select("SELECT COUNT(*) FROM address WHERE user_id = #{userId}")
+    int hasAddress(int userId);
 }

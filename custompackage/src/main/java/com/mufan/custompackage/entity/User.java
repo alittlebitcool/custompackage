@@ -16,10 +16,10 @@ import javax.persistence.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "shoppingCar")
+@Table(name = "user")
 public class User {
     @Id
-    private String id;
-    private String username;
-    private String password;
+    private int id;
+    private String userName;
+    private String openId;
 }

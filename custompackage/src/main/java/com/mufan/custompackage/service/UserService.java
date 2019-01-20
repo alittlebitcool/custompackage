@@ -7,4 +7,21 @@ package com.mufan.custompackage.service;
  * % @author YuXingZh
  */
 public interface UserService {
+    /**
+     * @Description: 验证openId是否有授权过
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    boolean verify(String openId);
+
+    /**
+     * @Description: 验证openId是否有授权过
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    void grant(String openId,String userName);
 }

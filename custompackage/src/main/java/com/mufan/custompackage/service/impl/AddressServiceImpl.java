@@ -21,14 +21,20 @@ public class AddressServiceImpl implements AddressService {
     private AddressMapper addressMapper;
 
     /**
-     * @Description: 更新默认地址
+     * @Description: 更新默认地址 此时必须要有默认地址 没有需要去add
      * @Param: address, userId
      * @return: void
      * @Author: YuXingZh
      * @Date: 2019/1/14
      */
     @Override
-    public void updateDefault(String addressId, int userId) {
+    public void updateDefault(int addressId, int userId) {
+        // 如果没有默认地址的话 避免空指针跳转addDefault();
+        if(!hasDefault(userId)) {
+            addDefault(addressId);
+            return ;
+        }
+
         Address ad = new Address();
         ad.setStatus(true);
         ad.setUserId(userId);
@@ -42,6 +48,20 @@ public class AddressServiceImpl implements AddressService {
         // 更新到数据库
         addressMapper.updateByPrimaryKey(defaulted);
         addressMapper.updateByPrimaryKey(address);
+    }
+
+    /**
+     * @Description: 更新地址默认地址
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    public void addDefault(int addressId) {
+        Address address = new Address();
+        address.setId(addressId);
+        address.setStatus(true);
+        addressMapper.updateByPrimaryKeySelective(address);
     }
 
     /**
@@ -85,6 +105,39 @@ public class AddressServiceImpl implements AddressService {
     }
 
     /**
+     * @Description: 当默认地址为空的时候 需要加入一条地址为默认地址 先查出来
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    public int originalAddress(int userId) {
+        return addressMapper.originalAddress(userId);
+    }
+
+    /**
+     * @Description: 判断是否有地址
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    public Boolean hasDefault(int userId) {
+        return addressMapper.hasDefault(userId) == 1;
+    }
+
+    /**
+     * @Description: 判断是否有默认地址
+     * @Param:
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    public Boolean hasAddress(int userId) {
+        return addressMapper.hasAddress(userId) == 1;
+    }
+
+    /**
      * @Description: 查询当前用户的所有地址 默认地址置顶
      * @Param: addressId
      * @return: null
@@ -93,13 +146,16 @@ public class AddressServiceImpl implements AddressService {
      */
     @Override
     public List<Address> getAll(int userId) {
+        if(hasAddress(userId) && !hasDefault(userId)) {
+            addDefault(originalAddress(userId));
+        }
         return addressMapper.getAll(userId);
     }
 
     /**
+     * @return address
      * @Description: 获取默认地址
      * @Param: userId
-     * @return address
      * @Author: YuXingZh
      * @Date: 2019/1/16
      */

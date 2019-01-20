@@ -21,7 +21,7 @@ public interface AddressService {
      * @Date: 2019/1/14
      */
     @Transactional
-    void updateDefault(String addressId, int userId);
+    void updateDefault(int addressId, int userId);
 
     /**
      * @Description: 插入地址

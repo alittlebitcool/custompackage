@@ -21,4 +21,14 @@ public interface UserMapper extends Mapper<User> {
      */
     @Select("SELECT COUNT(*) FROM user where open_id = #{openId}")
     int existsOpenId(String openId);
+
+    /**
+     * @Description: 验证openId是否存储过
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    @Select("SELECT id FROM user where open_id = #{openId}")
+    int getUserId(String openId);
 }

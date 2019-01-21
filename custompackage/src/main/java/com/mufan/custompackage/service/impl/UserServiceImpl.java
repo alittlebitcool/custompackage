@@ -6,6 +6,8 @@ import com.mufan.custompackage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ Author     ：zyx.
  * @ Date       ：Created in 16:45 2019/1/14
@@ -43,5 +45,20 @@ public class UserServiceImpl implements UserService {
         user.setOpenId(openId);
         user.setUserName(userName);
         userMapper.insertSelective(user);
+    }
+
+    /**
+     * @param openId
+     * @Description: 获取userId
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    @Override
+    public int getUserId(String openId) {
+        User user = new User();
+        user.setOpenId(openId);
+        return userMapper.getUserId(openId);
     }
 }

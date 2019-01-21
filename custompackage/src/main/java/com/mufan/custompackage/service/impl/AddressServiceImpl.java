@@ -73,6 +73,7 @@ public class AddressServiceImpl implements AddressService {
      */
     @Override
     public void insertAddress(Address address) {
+        address.setFreight(10.00);
         addressMapper.insert(address);
     }
 
@@ -134,7 +135,7 @@ public class AddressServiceImpl implements AddressService {
      * @Date: 2019/1/20
      */
     public Boolean hasAddress(int userId) {
-        return addressMapper.hasAddress(userId) == 1;
+        return addressMapper.hasAddress(userId) >= 1;
     }
 
     /**

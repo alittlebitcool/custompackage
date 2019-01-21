@@ -72,4 +72,19 @@ public class UserController {
         userService.grant(openId,userName);
         logger.info("授权成功");
     }
+
+    /**
+     * @Description: 授权
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    @RequestMapping("userId")
+    public int getUserId(@RequestParam("openId") String openId) {
+        logger.info("获取userId");
+        int userId = userService.getUserId(openId);
+        logger.info("获取userId成功");
+        return userId;
+    }
 }

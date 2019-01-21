@@ -24,4 +24,13 @@ public interface UserService {
      * @Date: 2019/1/20
      */
     void grant(String openId,String userName);
+
+    /**
+     * @Description: 获取userId
+     * @Param: openId
+     * @return:
+     * @Author: YuXingZh
+     * @Date: 2019/1/20
+     */
+    int getUserId(String openId);
 }
